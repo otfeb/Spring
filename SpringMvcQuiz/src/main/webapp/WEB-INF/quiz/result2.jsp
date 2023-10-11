@@ -17,6 +17,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h2 class="alert alert-info">결과출력</h2>
+	<div>
+		제목: ${title }
+		<img alt="" src="res/1.png">
+	</div>
 </body>
 </html>

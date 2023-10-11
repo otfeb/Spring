@@ -17,6 +17,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<form action="../movie" method="post">
+		<table class="table table-bordered" style="width: 300px;">
+			<tr>
+				<th>제목</th>
+				<td>
+					<input type="text" name="title" class="form-control">
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" align="center">
+					<button type="submit" class="btn btn-info">서버에저장</button>
+				</td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>
