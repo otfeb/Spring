@@ -31,7 +31,7 @@ public class CarController {
 		return "car/carlist";
 	}
 	
-	@GetMapping("/kakao/wrtieform")
+	@GetMapping("/kakao/writeform")
 	public String wrtieform() {
 		return "car/writeform";
 	}
@@ -48,6 +48,28 @@ public class CarController {
 	@GetMapping("/kakao/delete")
 	public String delete(String num) {
 		dao.deleteCar(num);
+		return "redirect:list";
+	}
+	
+	//getdata
+	@GetMapping("/kakao/updateform")
+	public ModelAndView getdata(String num) {
+		ModelAndView mav=new ModelAndView();
+		
+		MyCarDto dto=dao.getdata(num);
+		mav.addObject("dto", dto);
+		
+		mav.setViewName("car/updateform");
+		
+		return mav;
+	}
+	
+	//update
+	@PostMapping("/kakao/update")
+	public String update(@ModelAttribute("dto") MyCarDto dto) {
+		
+		dao.updateCar(dto);
+		
 		return "redirect:list";
 	}
 }

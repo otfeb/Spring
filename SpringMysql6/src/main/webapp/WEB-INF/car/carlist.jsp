@@ -17,7 +17,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<button type="button" onclick="location.href='wrtieform'">차 정보 입력</button><br>
+	<button type="button" onclick="location.href='writeform'" class="btn btn-success">차 정보 입력</button><br>
 	
 	<c:if test="${totalCount==0 }">
 		<h3 class="alert alert-info">저장된 차의 정보가 없습니다</h3>

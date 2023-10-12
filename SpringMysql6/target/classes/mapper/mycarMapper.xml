@@ -24,4 +24,14 @@
   		delete from mycar where num=#{num}
   	</delete>
   	
+  	<!-- getdata -->
+  	<select id="getdataOfMyCar" parameterType="String" resultType="mdto">
+  		select * from mycar where num=#{num}
+  	</select>
+  	
+  	<!-- update -->
+  	<update id="updateOfMyCar" parameterType="mdto">
+  		update mycar set carname=#{carname},carprice=#{carprice},carcolor=#{carcolor},carguip=#{carguip} where num=#{num}
+  	</update>
+  	
   </mapper>
