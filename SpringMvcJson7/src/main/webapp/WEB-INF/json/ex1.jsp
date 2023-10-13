@@ -27,7 +27,7 @@
 			$.ajax({
 				type:"get",
 				dataType:"json",
-				url:"list1",
+				url:"list1",		//mapping 주소
 				success:function(res){
 					$("#out1").empty();
 					$("#out1").append("이름: "+res.name+"<br>");
