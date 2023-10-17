@@ -10,4 +10,8 @@ public interface BoardDaoInter {
 	public void insertReboard(BoardDto dto);
 	public List<BoardDto> getPagingList(int start,int perpage);
 	public BoardDto getdataReboard(int num);
+	public void updateReadCount(int num);
+	public int getCheckPass(int num,int pass);
+	public void updateReboard(BoardDto dto);
+	public void deleteReboard(int num);
 }

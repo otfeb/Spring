@@ -31,18 +31,18 @@ public class BoardWriteController {
 	public String write(Model model, @RequestParam Map<String, String> map) {
 		
 		//이 5개는 답글일 경우에만 넘어옴(새글은 x)
-		String currentpage=map.get("currentPage");
+		String currentPage=map.get("currentPage");
 		String num=map.get("num");
 		String regroup=map.get("regroup");
 		String restep=map.get("restep");
 		String relevel=map.get("relevel");
 		
-		System.out.println(currentpage+","+num);
+		System.out.println(currentPage+","+num);
 		
 		//입력폼에 hidden으로 넣어준다..답글일때 대비
 		//0으로 넣어야 dao에서 새글로 인식
 		//폼이 답글,새글 공용이므로
-		model.addAttribute("currentpage", currentpage==null?"1":currentpage);
+		model.addAttribute("currentPage", currentPage==null?"1":currentPage);
 		model.addAttribute("num", num==null?"0":num);
 		model.addAttribute("regroup", regroup==null?"0":regroup);
 		model.addAttribute("restep", restep==null?"0":restep);
@@ -54,11 +54,12 @@ public class BoardWriteController {
 	@PostMapping("/board/insert")
 	public String insert(@ModelAttribute BoardDto dto, 
 			@RequestParam ArrayList<MultipartFile> upload,
-			HttpSession session) {
+			HttpSession session,@RequestParam String currentPage) {
 		
 		//실제경로
 		String path=session.getServletContext().getRealPath("/WEB-INF/photo");
 		System.out.println(path);
+		System.out.println(currentPage);
 		
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
 		
@@ -91,20 +92,10 @@ public class BoardWriteController {
 		
 		//insert
 		dao.insertReboard(dto);
+		int num=dao.getMaxNum();
 		
-		return "redirect:list";
+		return "redirect:content?num="+num+"&currentPage="+currentPage;
 	}
 	
-	@GetMapping("/board/content")
-	public String detail(Model model,int num,int currentPage) {
-		
-		model.addAttribute("num",num);
-		model.addAttribute("currentPage",currentPage);
-		
-		BoardDto dto=dao.getdataReboard(num);
-		
-		model.addAttribute("dto", dto);
-		
-		return "reboard/detailpage";
-	}
+	
 }

@@ -18,10 +18,9 @@ public class BoardListController {
 	BoardDao dao;
 
 	@GetMapping("/board/list")
-	public ModelAndView boardlist(@RequestParam(defaultValue = "1") int currentPage) {
+	public ModelAndView boardlist(@RequestParam(value="currentPage",defaultValue = "1") int currentPage) {
 		
 		ModelAndView model=new ModelAndView();
-		
 		
 		//페이징처리에 필요한 변수선언
 		int totalCount=dao.getTotalCount();		//전체 개수

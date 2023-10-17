@@ -14,7 +14,7 @@
 	
 	<!-- 같은 그룹중에서 step보다 큰 데이터는 모두 +1 -->
 	<update id="updateStepOfReboard" parameterType="HashMap">
-		update reboard set restep=restep+1 where reqroup=#{regroup} and restep>#{restep}
+		update reboard set restep=restep+1 where regroup=#{regroup} and restep>#{restep}
 	</update>
 	
 	<!-- insert: 새글, 답글 모두 해당 -->
@@ -32,4 +32,29 @@
 	<select id="getdataOfReboard" resultType="bdto" parameterType="Map">
 		select * from reboard where num=#{num}
 	</select>
+	
+	<!-- readcount 증가 -->
+	<update id="updateReadCount" parameterType="int">
+		update reboard set readcount=readcount+1 where num=#{num}
+	</update>
+	
+	<!-- 비밀번호 맞는지 확인 -->
+	<select id="checkpassEqualOfReboard" parameterType="HashMap" resultType="int">
+		select count(*) from reboard where num=#{num} and pass=#{pass}
+	</select>
+	
+	<!-- update -->
+	<update id="updateOfReboard" parameterType="bdto">
+		update reboard set writer=#{writer},subject=#{subject},content=#{content} 
+		<if test="photo!=null">
+			,photo=#{photo}
+		</if>
+		where num=#{num}
+	</update>
+	
+	<!-- delete -->
+	<delete id="deleteOfReboard" parameterType="int">
+		delete from reboard where num=#{num}
+	</delete>
+	
   </mapper>
